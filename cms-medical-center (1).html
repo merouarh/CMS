@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Centre Médical Soprec CMS</title>
+<meta name="description" content="Centre Médical Soprec CMS - Un centre médical moderne au service de votre santé. IRM, Scanner, Hémodialyse, Radiologie, Laboratoire."/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ===== CSS VARIABLES ===== */
+:root {
+  --primary: #1a3a6e;
+  --primary-light: #2556a8;
+  --accent: #c8293a;
+  --accent-light: #e8344a;
+  --white: #ffffff;
+  --off-white: #f8f9fc;
+  --light-gray: #eef1f7;
+  --mid-gray: #8a94a6;
+  --dark: #0d1b2e;
+  --text: #1c2b3a;
+  --text-light: #5a6a7e;
+  --bg: #ffffff;
+  --bg-card: #f8f9fc;
+  --bg-section: #f0f4fb;
+  --border: #dde3ee;
+  --shadow: 0 4px 24px rgba(26,58,110,0.10);
+  --shadow-lg: 0 8px 40px rgba(26,58,110,0.16);
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-arabic: 'Cairo', sans-serif;
+  --navbar-h: 80px;
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="dark"] {
+  --bg: #0d1b2e;
+  --bg-card: #152236;
+  --bg-section: #111e30;
+  --text: #e8edf5;
+  --text-light: #a0aab8;
+  --border: #1e3050;
+  --off-white: #152236;
+  --light-gray: #1a2d48;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
+  --white: #152236;
+}
+/* ===== GLOBAL ===== */
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition);}
+[lang="ar"] body,[dir="rtl"]{font-family:var(--font-arabic);}
+img{max-width:100%;height:auto;}
+a{text-decoration:none;color:inherit;}
+section{overflow:hidden;}
+.section-pad{padding:90px 0;}
+.section-pad-sm{padding:60px 0;}
+
+/* ===== TYPOGRAPHY ===== */
+.display-title{font-family:var(--font-display);font-weight:700;line-height:1.15;}
+.section-tag{font-size:0.78rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);display:inline-block;margin-bottom:14px;}
+.section-title{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--text);line-height:1.2;margin-bottom:16px;}
+.section-sub{color:var(--text-light);font-size:1.05rem;line-height:1.7;max-width:600px;}
+.divider{width:56px;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:2px;margin:20px 0 28px;}
+.divider-center{margin:20px auto 28px;}
+
+/* ===== NAVBAR ===== */
+#mainNav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--navbar-h);background:rgba(13,27,46,0.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background var(--transition),box-shadow var(--transition);}
+#mainNav.scrolled{background:var(--bg);box-shadow:0 2px 20px rgba(26,58,110,0.12);}
+#mainNav.scrolled .nav-links a{color:var(--text);}
+#mainNav.scrolled .nav-links a:hover,#mainNav.scrolled .nav-links a.active{color:var(--primary);background:var(--light-gray);}
+#mainNav.scrolled .lang-dropdown .dropdown-toggle{background:var(--light-gray);border-color:var(--border);color:var(--text);}
+#mainNav.scrolled .hamburger span{background:var(--text);}
+.nav-inner{display:flex;align-items:center;height:var(--navbar-h);gap:16px;}
+.navbar-logo{flex-shrink:0;}
+.navbar-logo img{height:52px;width:auto;object-fit:contain;display:block;}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;margin:0;padding:0;flex:1;justify-content:center;}
+.nav-links a{font-size:0.87rem;font-weight:500;color:rgba(255,255,255,0.92);padding:8px 12px;border-radius:8px;transition:all var(--transition);white-space:nowrap;}
+.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,0.15);}
+.nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.btn-appt{background:var(--accent);color:#fff!important;padding:9px 18px;border-radius:50px;font-size:0.83rem;font-weight:600;transition:all var(--transition);border:none;cursor:pointer;white-space:nowrap;line-height:1;}
+.btn-appt:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 6px 18px rgba(200,41,58,0.4);}
+.btn-wa-nav{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff!important;padding:9px 14px;border-radius:50px;font-size:0.83rem;font-weight:600;transition:all var(--transition);border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1;}
+.btn-wa-nav:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(37,211,102,0.35);}
+.lang-dropdown .dropdown-toggle{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:#fff;padding:7px 13px;border-radius:50px;font-size:0.82rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all var(--transition);line-height:1;}
+.lang-dropdown .dropdown-toggle:hover{background:rgba(255,255,255,0.25);}
+.lang-dropdown .dropdown-menu{border:1px solid var(--border);box-shadow:var(--shadow-lg);border-radius:14px;padding:8px;background:var(--bg);min-width:130px;}
+.lang-dropdown .dropdown-item{border-radius:8px;font-size:0.84rem;font-weight:500;padding:8px 14px;color:var(--text);transition:all 0.2s;display:flex;align-items:center;gap:8px;}
+.lang-dropdown .dropdown-item:hover,.lang-dropdown .dropdown-item.active{background:var(--light-gray);color:var(--primary);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border-radius:8px;flex-shrink:0;background:none;border:none;}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:all var(--transition);}
+#mainNav.scrolled .hamburger span{background:var(--text);}
+
+/* ===== HERO ===== */
+#hero{height:100vh;min-height:600px;position:relative;overflow:hidden;}
+.hero-slider{position:absolute;inset:0;}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;background-size:cover;background-position:center;}
+.hero-slide.active{opacity:1;}
+.hero-slide:nth-child(1){background-image:linear-gradient(135deg,rgba(13,27,46,0.82) 0%,rgba(26,58,110,0.65) 60%,rgba(200,41,58,0.3) 100%),url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1600&q=80');}
+.hero-slide:nth-child(2){background-image:linear-gradient(135deg,rgba(13,27,46,0.80) 0%,rgba(26,58,110,0.60) 60%,rgba(200,41,58,0.25) 100%),url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1600&q=80');}
+.hero-slide:nth-child(3){background-image:linear-gradient(135deg,rgba(13,27,46,0.82) 0%,rgba(26,58,110,0.65) 60%,rgba(200,41,58,0.3) 100%),url('https://images.unsplash.com/photo-1551076805-e1869033e561?w=1600&q=80');}
+.hero-content{position:relative;z-index:2;height:100%;display:flex;align-items:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:8px 20px;margin-bottom:24px;font-size:0.8rem;font-weight:600;color:#fff;letter-spacing:0.1em;text-transform:uppercase;}
+.hero-badge span{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,4.2rem);font-weight:700;color:#fff;line-height:1.1;margin-bottom:20px;}
+.hero-title span{color:#f5c842;}
+.hero-sub{font-size:clamp(1rem,2vw,1.25rem);color:rgba(255,255,255,0.85);margin-bottom:38px;line-height:1.6;max-width:560px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-hero-primary{background:var(--accent);color:#fff;padding:14px 32px;border-radius:50px;font-weight:600;font-size:0.95rem;transition:all var(--transition);border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;}
+.btn-hero-primary:hover{background:var(--accent-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,41,58,0.4);}
+.btn-hero-outline{background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);color:#fff;padding:14px 32px;border-radius:50px;font-weight:600;font-size:0.95rem;transition:all var(--transition);border:1px solid rgba(255,255,255,0.4);cursor:pointer;display:inline-flex;align-items:center;gap:8px;}
+.btn-hero-outline:hover{background:rgba(255,255,255,0.22);transform:translateY(-2px);}
+.hero-stats{position:absolute;bottom:40px;left:0;right:0;z-index:2;}
+.hero-stats-inner{display:flex;gap:0;background:rgba(255,255,255,0.08);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.15);border-radius:20px;overflow:hidden;max-width:700px;}
+.hero-stat{flex:1;padding:20px 24px;text-align:center;border-right:1px solid rgba(255,255,255,0.12);}
+.hero-stat:last-child{border-right:none;}
+.hero-stat-num{font-family:var(--font-display);font-size:1.9rem;font-weight:700;color:#fff;}
+.hero-stat-lbl{font-size:0.78rem;color:rgba(255,255,255,0.72);margin-top:2px;}
+.slider-dots{position:absolute;bottom:160px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:8px;}
+.slider-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all var(--transition);}
+.slider-dot.active{background:#fff;width:24px;border-radius:4px;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+
+/* ===== ABOUT ===== */
+#about{background:var(--bg);}
+.about-img-wrap{position:relative;}
+.about-img-main{border-radius:20px;width:100%;height:460px;object-fit:cover;box-shadow:var(--shadow-lg);}
+.about-img-badge{position:absolute;bottom:-24px;right:-18px;background:var(--primary);color:#fff;border-radius:16px;padding:20px 24px;box-shadow:var(--shadow-lg);text-align:center;}
+.about-img-badge .num{font-family:var(--font-display);font-size:2.2rem;font-weight:700;line-height:1;}
+.about-img-badge .lbl{font-size:0.75rem;opacity:0.85;margin-top:4px;}
+.about-feature{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;}
+.about-icon{width:46px;height:46px;background:var(--light-gray);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--primary);font-size:1.1rem;transition:all var(--transition);}
+.about-feature:hover .about-icon{background:var(--primary);color:#fff;}
+.about-feature-txt h6{font-size:0.92rem;font-weight:600;color:var(--text);margin-bottom:4px;}
+.about-feature-txt p{font-size:0.84rem;color:var(--text-light);line-height:1.5;margin:0;}
+
+/* ===== STATS ===== */
+#stats{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%);padding:80px 0;}
+.stat-card{text-align:center;padding:30px 20px;}
+.stat-num{font-family:var(--font-display);font-size:clamp(2.4rem,4vw,3.4rem);font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;gap:4px;}
+.stat-suffix{font-size:1.8rem;margin-top:4px;}
+.stat-lbl{color:rgba(255,255,255,0.78);font-size:0.9rem;margin-top:8px;font-weight:500;}
+.stat-icon{width:52px;height:52px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:#fff;font-size:1.3rem;}
+
+/* ===== SERVICES ===== */
+#services{background:var(--bg-section);}
+.service-card{background:var(--bg);border-radius:18px;padding:32px 24px;border:1px solid var(--border);transition:all var(--transition);height:100%;position:relative;overflow:hidden;}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));transform:scaleX(0);transition:transform var(--transition);}
+.service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:transparent;}
+.service-card:hover::before{transform:scaleX(1);}
+.service-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;margin-bottom:20px;transition:all var(--transition);}
+.service-card:hover .service-icon{transform:scale(1.1);}
+.service-card h5{font-family:var(--font-display);font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:10px;}
+.service-card p{font-size:0.86rem;color:var(--text-light);line-height:1.6;margin:0;}
+
+/* ===== DOCTORS ===== */
+#doctors{background:var(--bg);}
+.doctor-card{background:var(--bg-card);border-radius:20px;overflow:hidden;border:1px solid var(--border);transition:all var(--transition);}
+.doctor-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);}
+.doctor-img{width:100%;height:260px;object-fit:cover;object-position:top;}
+.doctor-info{padding:22px;}
+.doctor-specialty{font-size:0.75rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;}
+.doctor-name{font-family:var(--font-display);font-size:1.12rem;font-weight:700;color:var(--text);margin-bottom:8px;}
+.doctor-desc{font-size:0.83rem;color:var(--text-light);line-height:1.5;margin-bottom:14px;}
+.doctor-social{display:flex;gap:8px;}
+.doc-soc{width:32px;height:32px;background:var(--light-gray);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--text-light);font-size:0.8rem;transition:all var(--transition);}
+.doc-soc:hover{background:var(--primary);color:#fff;}
+
+/* ===== EQUIPMENT ===== */
+#equipment{background:var(--bg-section);}
+.equip-card{background:var(--bg);border-radius:18px;overflow:hidden;border:1px solid var(--border);transition:all var(--transition);}
+.equip-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);}
+.equip-img{width:100%;height:200px;object-fit:cover;}
+.equip-body{padding:22px;}
+.equip-tag{font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--primary);background:rgba(26,58,110,0.08);padding:4px 10px;border-radius:50px;display:inline-block;margin-bottom:10px;}
+.equip-body h5{font-family:var(--font-display);font-size:1.0rem;font-weight:700;color:var(--text);margin-bottom:8px;}
+.equip-body p{font-size:0.83rem;color:var(--text-light);line-height:1.55;margin:0;}
+
+/* ===== DIALYSIS ===== */
+#dialysis{background:var(--dark);color:#fff;position:relative;overflow:hidden;}
+#dialysis::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(26,58,110,0.4) 0%,transparent 70%);}
+#dialysis::after{content:'';position:absolute;bottom:-80px;left:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(200,41,58,0.25) 0%,transparent 70%);}
+.dialysis-inner{position:relative;z-index:2;}
+.dial-card{background:rgba(255,255,255,0.06);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:36px 28px;height:100%;transition:all var(--transition);}
+.dial-card:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);transform:translateY(-4px);}
+.dial-icon{width:58px;height:58px;background:linear-gradient(135deg,var(--accent),#e8344a);border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;margin-bottom:22px;}
+.dial-card h4{font-family:var(--font-display);font-size:1.22rem;font-weight:700;color:#fff;margin-bottom:14px;}
+.dial-card p{color:rgba(255,255,255,0.72);font-size:0.87rem;line-height:1.65;}
+.dial-card ul{list-style:none;padding:0;margin:14px 0 0;}
+.dial-card ul li{font-size:0.85rem;color:rgba(255,255,255,0.7);padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:10px;}
+.dial-card ul li:last-child{border:none;}
+.dial-card ul li i{color:var(--accent);font-size:0.7rem;}
+.dial-num{font-family:var(--font-display);font-size:3.5rem;font-weight:700;color:#fff;line-height:1;}
+.dial-lbl{color:rgba(255,255,255,0.7);font-size:0.9rem;margin-top:6px;}
+
+/* ===== WHY CHOOSE US ===== */
+#why{background:var(--bg);}
+.why-card{display:flex;align-items:flex-start;gap:18px;padding:28px;background:var(--bg-card);border-radius:18px;border:1px solid var(--border);transition:all var(--transition);}
+.why-card:hover{box-shadow:var(--shadow);border-color:var(--primary);transform:translateX(4px);}
+.why-icon{width:52px;height:52px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;flex-shrink:0;}
+.why-txt h5{font-size:0.98rem;font-weight:600;color:var(--text);margin-bottom:6px;}
+.why-txt p{font-size:0.83rem;color:var(--text-light);line-height:1.55;margin:0;}
+
+/* ===== CERTIFICATIONS ===== */
+#certs{background:var(--bg-section);}
+.cert-card{background:var(--bg);border-radius:18px;padding:28px 20px;text-align:center;border:1px solid var(--border);transition:all var(--transition);}
+.cert-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+.cert-icon{width:64px;height:64px;background:linear-gradient(135deg,#f5f5f5,#e8edf7);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.8rem;}
+.cert-card h6{font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:8px;}
+.cert-card p{font-size:0.8rem;color:var(--text-light);line-height:1.5;margin:0;}
+
+/* ===== GALLERY SLIDER ===== */
+#gallery{background:var(--bg);padding:80px 0;}
+.gallery-slider{position:relative;overflow:hidden;border-radius:20px;}
+.gallery-track{display:flex;transition:transform 0.6s ease;}
+.gallery-slide{min-width:100%;height:480px;background-size:cover;background-position:center;border-radius:20px;}
+.gallery-slide:nth-child(1){background-image:url('https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=1400&q=80');}
+.gallery-slide:nth-child(2){background-image:url('https://images.unsplash.com/photo-1551076805-e1869033e561?w=1400&q=80');}
+.gallery-slide:nth-child(3){background-image:url('https://images.unsplash.com/photo-1581595219315-a187dd40c322?w=1400&q=80');}
+.gallery-slide:nth-child(4){background-image:url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1400&q=80');}
+.gallery-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.9);backdrop-filter:blur(8px);border:none;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--primary);box-shadow:var(--shadow);transition:all var(--transition);z-index:2;}
+.gallery-btn:hover{background:var(--primary);color:#fff;}
+.gallery-btn.prev{left:20px;}
+.gallery-btn.next{right:20px;}
+
+/* ===== FAQ ===== */
+#faq{background:var(--bg-section);}
+.faq-item{background:var(--bg);border-radius:14px;border:1px solid var(--border);margin-bottom:12px;overflow:hidden;transition:all var(--transition);}
+.faq-item.open{border-color:var(--primary);box-shadow:0 4px 16px rgba(26,58,110,0.1);}
+.faq-question{padding:20px 24px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.faq-question span{font-size:0.95rem;font-weight:600;color:var(--text);}
+.faq-question i{color:var(--mid-gray);transition:transform var(--transition);flex-shrink:0;}
+.faq-item.open .faq-question i{transform:rotate(45deg);color:var(--primary);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;}
+.faq-answer.open{max-height:300px;}
+.faq-answer-inner{padding:0 24px 20px;font-size:0.87rem;color:var(--text-light);line-height:1.7;border-top:1px solid var(--border);}
+.faq-answer-inner{padding:16px 24px 20px;}
+
+/* ===== CONTACT ===== */
+#contact{background:var(--bg);}
+.contact-info-card{background:var(--bg-card);border-radius:18px;padding:32px;border:1px solid var(--border);}
+.contact-item{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;}
+.contact-item:last-child{margin-bottom:0;}
+.contact-icon{width:46px;height:46px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;flex-shrink:0;}
+.contact-item h6{font-size:0.82rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;}
+.contact-item a,.contact-item p{font-size:0.92rem;color:var(--text);font-weight:500;margin:0;transition:color var(--transition);}
+.contact-item a:hover{color:var(--primary);}
+.map-wrap{border-radius:18px;overflow:hidden;height:350px;border:1px solid var(--border);}
+.map-wrap iframe{width:100%;height:100%;border:none;}
+.hours-table{width:100%;}
+.hours-table tr{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:0.87rem;}
+.hours-table tr:last-child{border:none;}
+.hours-table td:first-child{color:var(--text-light);}
+.hours-table td:last-child{font-weight:600;color:var(--text);}
+.social-btns{display:flex;gap:10px;margin-top:20px;}
+.soc-btn{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;transition:all var(--transition);}
+.soc-btn:hover{transform:translateY(-3px);}
+.soc-fb{background:#1877f2;}
+.soc-ig{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+.soc-tt{background:#000;}
+
+/* ===== FOOTER ===== */
+footer{background:var(--dark);color:rgba(255,255,255,0.85);padding:70px 0 30px;}
+[data-theme="dark"] footer{background:#070f1a;}
+.footer-logo img{height:52px;}
+.footer-tagline{font-size:0.85rem;color:rgba(255,255,255,0.55);margin-top:12px;line-height:1.6;}
+footer h6{font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:20px;}
+footer ul{list-style:none;padding:0;margin:0;}
+footer ul li{margin-bottom:10px;}
+footer ul li a{font-size:0.88rem;color:rgba(255,255,255,0.7);transition:color var(--transition);}
+footer ul li a:hover{color:#fff;}
+.footer-contact-item{display:flex;align-items:center;gap:10px;font-size:0.88rem;color:rgba(255,255,255,0.7);margin-bottom:10px;}
+.footer-contact-item i{color:var(--accent);width:14px;}
+.footer-divider{border:none;border-top:1px solid rgba(255,255,255,0.08);margin:40px 0 28px;}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.footer-copy{font-size:0.82rem;color:rgba(255,255,255,0.45);}
+.theme-toggle-wrap{display:flex;align-items:center;gap:10px;}
+.theme-label{font-size:0.8rem;color:rgba(255,255,255,0.5);}
+.theme-toggle{position:relative;width:56px;height:28px;}
+.theme-toggle input{opacity:0;width:0;height:0;}
+.theme-slider{position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,0.12);border-radius:50px;transition:all var(--transition);border:1px solid rgba(255,255,255,0.15);}
+.theme-slider::before{content:'';position:absolute;height:22px;width:22px;left:3px;bottom:2px;background:#fff;border-radius:50%;transition:all var(--transition);display:flex;align-items:center;justify-content:center;}
+input:checked + .theme-slider{background:var(--primary);}
+input:checked + .theme-slider::before{transform:translateX(28px);}
+.theme-icon{font-size:0.9rem;color:rgba(255,255,255,0.6);}
+.footer-soc{display:flex;gap:10px;}
+.footer-soc a{width:36px;height:36px;background:rgba(255,255,255,0.08);border-radius:10px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:0.9rem;transition:all var(--transition);}
+.footer-soc a:hover{background:var(--primary);color:#fff;transform:translateY(-2px);}
+
+/* ===== FLOATING WA ===== */
+.floating-wa{position:fixed;bottom:28px;right:28px;z-index:999;width:56px;height:56px;background:linear-gradient(135deg,#25d366,#128c7e);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;box-shadow:0 6px 24px rgba(37,211,102,0.5);animation:waFloat 3s ease-in-out infinite;transition:transform var(--transition);}
+.floating-wa:hover{transform:scale(1.1);}
+@keyframes waFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+
+/* ===== ANIMATIONS ===== */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+.fade-left{opacity:0;transform:translateX(-30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade-left.visible{opacity:1;transform:translateX(0);}
+.fade-right{opacity:0;transform:translateX(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade-right.visible{opacity:1;transform:translateX(0);}
+[data-delay="1"]{transition-delay:0.1s;}
+[data-delay="2"]{transition-delay:0.2s;}
+[data-delay="3"]{transition-delay:0.3s;}
+[data-delay="4"]{transition-delay:0.4s;}
+[data-delay="5"]{transition-delay:0.5s;}
+[data-delay="6"]{transition-delay:0.6s;}
+
+/* ===== APPOINTMENT MODAL ===== */
+.modal-content{background:var(--bg);border-radius:20px;border:1px solid var(--border);}
+.modal-header{border-bottom:1px solid var(--border);padding:24px 28px;}
+.modal-title{font-family:var(--font-display);font-weight:700;color:var(--text);}
+.modal-body{padding:28px;}
+.form-label{font-size:0.84rem;font-weight:600;color:var(--text);margin-bottom:6px;}
+.form-control,.form-select{background:var(--bg-card);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:10px 14px;font-size:0.9rem;transition:all var(--transition);}
+.form-control:focus,.form-select:focus{background:var(--bg);border-color:var(--primary);box-shadow:0 0 0 3px rgba(26,58,110,0.12);}
+.btn-submit{background:var(--primary);color:#fff;border:none;padding:12px 32px;border-radius:50px;font-weight:600;cursor:pointer;width:100%;transition:all var(--transition);}
+.btn-submit:hover{background:var(--primary-light);}
+
+/* ===== RTL SUPPORT ===== */
+[dir="rtl"] .about-img-badge{right:auto;left:-18px;}
+[dir="rtl"] .hero-stats{text-align:right;}
+[dir="rtl"] .why-card:hover{transform:translateX(-4px);}
+[dir="rtl"] .contact-item{direction:rtl;}
+[dir="rtl"] .about-feature{direction:rtl;}
+[dir="rtl"] .dial-card ul li{direction:rtl;}
+[dir="rtl"] .navbar-logo{order:2;}
+[dir="rtl"] .nav-actions{order:1;}
+[dir="rtl"] .nav-links{order:0;}
+[dir="rtl"] .footer-contact-item{direction:rtl;}
+/* Guarantee LTR pages stay fully LTR */
+html[dir="ltr"] body{direction:ltr;text-align:left;}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1200px){.hero-stats-inner{flex-wrap:wrap;}.hero-stat{min-width:45%;}}
+@media(max-width:991px){
+  :root{--navbar-h:68px;}
+  /* Hide desktop nav items */
+  .nav-links{display:none!important;}
+  .btn-appt{display:none!important;}
+  .btn-wa-nav{display:none!important;}
+  /* Show hamburger */
+  .hamburger{display:flex!important;}
+  /* Mobile menu */
+  .mobile-menu{position:fixed;top:var(--navbar-h);left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:16px 20px 20px;transform:translateY(-110%);transition:transform var(--transition);z-index:998;box-shadow:0 8px 32px rgba(0,0,0,0.15);}
+  .mobile-menu.open{transform:translateY(0);}
+  .mobile-menu .nav-links{display:flex!important;flex-direction:column;gap:2px;margin-bottom:0;}
+  .mobile-menu .nav-links a{display:block;padding:12px 14px;font-size:0.95rem;color:var(--text);border-radius:10px;}
+  .mobile-menu .nav-links a:hover{background:var(--light-gray);color:var(--primary);}
+  .mobile-menu .nav-actions{display:flex!important;margin-top:14px;gap:10px;flex-wrap:wrap;}
+  .mobile-menu .btn-appt{display:inline-block!important;}
+  .mobile-menu .btn-wa-nav{display:inline-flex!important;}
+  /* About badge */
+  .about-img-badge{bottom:-14px;right:10px;}
+  /* Hero stats */
+  .hero-stats-inner{flex-direction:column;gap:0;}
+  .hero-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,0.12);}
+  /* Gallery */
+  .gallery-slide{height:320px;}
+  .dial-num{font-size:2.4rem;}
+  /* Ensure images display on mobile */
+  img{max-width:100%;height:auto;display:block;}
+  .doctor-img{width:100%;height:240px;object-fit:cover;object-position:top;}
+  .equip-img{width:100%;height:190px;object-fit:cover;}
+  .about-img-main{height:340px;}
+}
+@media(max-width:768px){
+  /* Keep lang dropdown visible, hide appt+wa until mobile menu */
+  .nav-actions .btn-appt,.nav-actions .btn-wa-nav{display:none!important;}
+  .nav-inner{gap:10px;}
+}
+@media(max-width:576px){
+  .section-pad{padding:60px 0;}
+  .hero-title{font-size:1.85rem;}
+  .hero-sub{font-size:0.9rem;}
+  .btn-hero-primary,.btn-hero-outline{padding:11px 20px;font-size:0.86rem;}
+  .hero-btns{gap:10px;}
+  .hero-stats{bottom:20px;}
+  .hero-stats-inner{display:none;}
+  .slider-dots{bottom:80px;}
+  .doctor-img{height:210px;}
+  .gallery-slide{height:240px;}
+  .floating-wa{bottom:18px;right:18px;width:50px;height:50px;font-size:1.3rem;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:16px;}
+  .about-img-main{height:280px;}
+  .about-img-badge{bottom:-10px;right:8px;padding:14px 18px;}
+  .about-img-badge .num{font-size:1.7rem;}
+  .map-wrap{height:260px;}
+  .contact-info-card{padding:22px 16px;}
+  .dial-num{font-size:2rem;}
+  .stat-card{padding:22px 10px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="mainNav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="navbar-logo"><img src="https://res.cloudinary.com/dbh0mkfhe/image/upload/v1777891011/FB_IMG_1777882082499_bhwlk2.jpg" alt="Centre Médical Soprec CMS" id="navLogo"/></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero" class="active" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="#about" data-i18n="nav.about">À propos</a></li>
+        <li><a href="#services" data-i18n="nav.services">Services</a></li>
+        <li><a href="#doctors" data-i18n="nav.doctors">Médecins</a></li>
+        <li><a href="#dialysis" data-i18n="nav.dialysis">Hémodialyse</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="lang-dropdown dropdown">
+          <button class="dropdown-toggle" data-bs-toggle="dropdown" id="langBtn"><i class="fa fa-globe"></i> <span id="langLabel">FR</span></button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item active" href="#" onclick="setLang('fr')"><span>🇫🇷</span> Français</a></li>
+            <li><a class="dropdown-item" href="#" onclick="setLang('en')"><span>🇬🇧</span> English</a></li>
+            <li><a class="dropdown-item" href="#" onclick="setLang('ar')"><span>🇩🇿</span> العربية</a></li>
+          </ul>
+        </div>
+        <button class="btn-appt" data-bs-toggle="modal" data-bs-target="#apptModal" data-i18n="nav.appt">Rendez-vous</button>
+        <a href="https://wa.me/213000000000" target="_blank" class="btn-wa-nav"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
+      <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="nav-links">
+    <li><a href="#hero" onclick="closeMobile()" data-i18n="nav.home">Accueil</a></li>
+    <li><a href="#about" onclick="closeMobile()" data-i18n="nav.about">À propos</a></li>
+    <li><a href="#services" onclick="closeMobile()" data-i18n="nav.services">Services</a></li>
+    <li><a href="#doctors" onclick="closeMobile()" data-i18n="nav.doctors">Médecins</a></li>
+    <li><a href="#dialysis" onclick="closeMobile()" data-i18n="nav.dialysis">Hémodialyse</a></li>
+    <li><a href="#contact" onclick="closeMobile()" data-i18n="nav.contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions mt-3">
+    <button class="btn-appt" data-bs-toggle="modal" data-bs-target="#apptModal" data-i18n="nav.appt">Rendez-vous</button>
+    <a href="https://wa.me/213000000000" target="_blank" class="btn-wa-nav ms-2"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-slider">
+    <div class="hero-slide active"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+  </div>
+  <div class="hero-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="hero-badge fade-in visible"><span></span> <span data-i18n="hero.badge">Excellence Médicale Certifiée</span></div>
+          <h1 class="hero-title fade-in visible" data-delay="1">Centre Médical<br><span data-i18n="hero.title.span">Soprec CMS</span></h1>
+          <p class="hero-sub fade-in visible" data-delay="2" data-i18n="hero.sub">Un centre médical moderne au service de votre santé, équipé des dernières technologies médicales pour vous offrir les meilleurs soins.</p>
+          <div class="hero-btns fade-in visible" data-delay="3">
+            <button class="btn-hero-primary" data-bs-toggle="modal" data-bs-target="#apptModal" data-i18n="hero.cta1"><i class="far fa-calendar-alt"></i> Prendre rendez-vous</button>
+            <a href="https://wa.me/213000000000" target="_blank" class="btn-hero-outline" data-i18n="hero.cta2"><i class="fab fa-whatsapp"></i> Contacter sur WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="container">
+      <div class="hero-stats-inner">
+        <div class="hero-stat"><div class="hero-stat-num">5000+</div><div class="hero-stat-lbl" data-i18n="hero.stat1">Patients traités</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">30</div><div class="hero-stat-lbl" data-i18n="hero.stat2">Générateurs dialyse</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">15+</div><div class="hero-stat-lbl" data-i18n="hero.stat3">Médecins spécialistes</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">24/7</div><div class="hero-stat-lbl" data-i18n="hero.stat4">Disponibilité</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slider-dots">
+    <div class="slider-dot active" onclick="goSlide(0)"></div>
+    <div class="slider-dot" onclick="goSlide(1)"></div>
+    <div class="slider-dot" onclick="goSlide(2)"></div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="section-pad">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 fade-left">
+        <div class="about-img-wrap">
+          <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80" alt="Centre Médical" class="about-img-main"/>
+          <div class="about-img-badge">
+            <div class="num">15+</div>
+            <div class="lbl" data-i18n="about.badge">Années d'expérience</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 fade-right">
+        <div class="ps-lg-4">
+          <span class="section-tag" data-i18n="about.tag">À propos de nous</span>
+          <h2 class="section-title" data-i18n="about.title">Votre santé, notre priorité absolue</h2>
+          <div class="divider"></div>
+          <p class="mb-4" style="color:var(--text-light);line-height:1.8;font-size:0.95rem;" data-i18n="about.desc">Le Centre Médical Soprec CMS est un établissement de santé de référence, dédié à offrir des soins médicaux de haute qualité. Grâce à une équipe de spécialistes expérimentés et à des équipements médicaux de pointe, nous garantissons un diagnostic précis et un traitement personnalisé pour chaque patient.</p>
+          <div class="about-feature">
+            <div class="about-icon"><i class="fas fa-microscope"></i></div>
+            <div class="about-feature-txt">
+              <h6 data-i18n="about.f1.title">Technologie médicale avancée</h6>
+              <p data-i18n="about.f1.desc">Équipements IRM, Scanner et radiologie de dernière génération pour des diagnostics précis.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-icon"><i class="fas fa-user-md"></i></div>
+            <div class="about-feature-txt">
+              <h6 data-i18n="about.f2.title">Équipe médicale expérimentée</h6>
+              <p data-i18n="about.f2.desc">Médecins spécialistes et personnel soignant qualifié, dévoués à votre bien-être.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-icon"><i class="fas fa-heart"></i></div>
+            <div class="about-feature-txt">
+              <h6 data-i18n="about.f3.title">Soins centrés sur le patient</h6>
+              <p data-i18n="about.f3.desc">Une approche humaine et personnalisée pour chaque patient, dans un environnement sûr et confortable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section id="stats">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 col-md-3 fade-in" data-delay="1">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-users"></i></div>
+          <div class="stat-num"><span class="counter" data-target="5000">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-lbl" data-i18n="stats.s1">Patients traités</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 fade-in" data-delay="2">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-user-md"></i></div>
+          <div class="stat-num"><span class="counter" data-target="25">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-lbl" data-i18n="stats.s2">Médecins spécialistes</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 fade-in" data-delay="3">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+          <div class="stat-num"><span class="counter" data-target="15">0</span><span class="stat-suffix"></span></div>
+          <div class="stat-lbl" data-i18n="stats.s3">Années d'expérience</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 fade-in" data-delay="4">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-heartbeat"></i></div>
+          <div class="stat-num"><span class="counter" data-target="30">0</span><span class="stat-suffix"></span></div>
+          <div class="stat-lbl" data-i18n="stats.s4">Générateurs hémodialyse</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5 fade-in">
+      <span class="section-tag" data-i18n="services.tag">Nos services</span>
+      <h2 class="section-title" data-i18n="services.title">Services médicaux complets</h2>
+      <div class="divider divider-center"></div>
+      <p class="section-sub mx-auto" data-i18n="services.sub">Nous offrons une gamme complète de services médicaux diagnostiques et thérapeutiques pour répondre à tous vos besoins de santé.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-4 fade-in" data-delay="1">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-magnet"></i></div>
+          <h5 data-i18n="srv.irm">IRM</h5>
+          <p data-i18n="srv.irm.desc">Imagerie par résonance magnétique haute résolution pour des diagnostics précis des tissus mous, cerveau, et articulations.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 fade-in" data-delay="2">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-x-ray"></i></div>
+          <h5 data-i18n="srv.scanner">Scanner (TDM)</h5>
+          <p data-i18n="srv.scanner.desc">Tomodensitométrie multicoupes pour l'exploration du thorax, abdomen, pelvis et des structures vasculaires.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 fade-in" data-delay="3">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-radiation"></i></div>
+          <h5 data-i18n="srv.radio">Radiologie</h5>
+          <p data-i18n="srv.radio.desc">Radiographies numériques et mammographie pour le dépistage et le suivi de nombreuses pathologies.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 fade-in" data-delay="4">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-syringe"></i></div>
+          <h5 data-i18n="srv.interv">Radiologie interventionnelle</h5>
+          <p data-i18n="srv.interv.desc">Procédures mini-invasives guidées par imagerie pour le traitement de diverses conditions médicales.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 fade-in" data-delay="5">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-flask"></i></div>
+          <h5 data-i18n="srv.labo">Laboratoire d'analyses</h5>
+          <p data-i18n="srv.labo.desc">Analyses biologiques complètes — biochimie, hématologie, microbiologie — avec résultats rapides et fiables.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 fade-in" data-delay="6">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-stethoscope"></i></div>
+          <h5 data-i18n="srv.consult">Consultations médicales</h5>
+          <p data-i18n="srv.consult.desc">Consultations spécialisées en cardiologie, néphrologie, médecine interne et autres disciplines.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 fade-in" data-delay="1">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-tint"></i></div>
+          <h5 data-i18n="srv.hemo">Hémodialyse</h5>
+          <p data-i18n="srv.hemo.desc">Centre d'hémodialyse doté de 30 générateurs modernes pour la prise en charge des insuffisants rénaux chroniques.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 fade-in" data-delay="2">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-heartbeat"></i></div>
+          <h5 data-i18n="srv.cardio">Échocardiographie</h5>
+          <p data-i18n="srv.cardio.desc">Exploration cardiaque par ultrasons pour évaluer la fonction cardiaque et détecter les pathologies du cœur.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 fade-in" data-delay="3">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-baby"></i></div>
+          <h5 data-i18n="srv.echo">Échographie</h5>
+          <p data-i18n="srv.echo.desc">Échographies abdominales, obstétriques et des parties molles avec technologie ultrasonore de précision.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DOCTORS ===== -->
+<section id="doctors" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5 fade-in">
+      <span class="section-tag" data-i18n="docs.tag">Notre équipe</span>
+      <h2 class="section-title" data-i18n="docs.title">Nos médecins spécialistes</h2>
+      <div class="divider divider-center"></div>
+      <p class="section-sub mx-auto" data-i18n="docs.sub">Une équipe de médecins hautement qualifiés et expérimentés, dédiés à vous offrir les meilleurs soins médicaux.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3 fade-in" data-delay="1">
+        <div class="doctor-card">
+          <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80" alt="Dr. médecin" class="doctor-img"/>
+          <div class="doctor-info">
+            <div class="doctor-specialty" data-i18n="doc1.spec">Néphrologue</div>
+            <div class="doctor-name">Dr. Ahmed Benali</div>
+            <p class="doctor-desc" data-i18n="doc1.desc">Spécialiste en néphrologie et hémodialyse, 12 ans d'expérience clinique.</p>
+            <div class="doctor-social">
+              <a href="#" class="doc-soc"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="doc-soc"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 fade-in" data-delay="2">
+        <div class="doctor-card">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80" alt="Dr. médecin" class="doctor-img"/>
+          <div class="doctor-info">
+            <div class="doctor-specialty" data-i18n="doc2.spec">Radiologue</div>
+            <div class="doctor-name">Dr. Sarah Meziane</div>
+            <p class="doctor-desc" data-i18n="doc2.desc">Experte en radiologie interventionnelle et imagerie médicale avancée.</p>
+            <div class="doctor-social">
+              <a href="#" class="doc-soc"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="doc-soc"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 fade-in" data-delay="3">
+        <div class="doctor-card">
+          <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80" alt="Dr. médecin" class="doctor-img"/>
+          <div class="doctor-info">
+            <div class="doctor-specialty" data-i18n="doc3.spec">Cardiologue</div>
+            <div class="doctor-name">Dr. Karim Hadjadj</div>
+            <p class="doctor-desc" data-i18n="doc3.desc">Spécialiste des maladies cardiovasculaires, échocardiographie et suivi cardiaque.</p>
+            <div class="doctor-social">
+              <a href="#" class="doc-soc"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="doc-soc"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 fade-in" data-delay="4">
+        <div class="doctor-card">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80" alt="Dr. médecin" class="doctor-img"/>
+          <div class="doctor-info">
+            <div class="doctor-specialty" data-i18n="doc4.spec">Médecine interne</div>
+            <div class="doctor-name">Dr. Amina Boudiaf</div>
+            <p class="doctor-desc" data-i18n="doc4.desc">Médecine interne et maladies chroniques, approche globale et préventive.</p>
+            <div class="doctor-social">
+              <a href="#" class="doc-soc"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="doc-soc"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EQUIPMENT ===== -->
+<section id="equipment" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5 fade-in">
+      <span class="section-tag" data-i18n="equip.tag">Équipements</span>
+      <h2 class="section-title" data-i18n="equip.title">Technologie médicale de pointe</h2>
+      <div class="divider divider-center"></div>
+      <p class="section-sub mx-auto" data-i18n="equip.sub">Nos équipements de dernière génération garantissent des diagnostics précis et des soins de qualité supérieure.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-4 fade-in" data-delay="1">
+        <div class="equip-card">
+          <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=600&q=80" alt="IRM" class="equip-img"/>
+          <div class="equip-body">
+            <span class="equip-tag">Imagerie</span>
+            <h5 data-i18n="eq1.name">IRM 3 Tesla</h5>
+            <p data-i18n="eq1.desc">Machine IRM haute résolution 3 Tesla pour une imagerie cérébrale, médullaire et musculo-squelettique de précision inégalée.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 fade-in" data-delay="2">
+        <div class="equip-card">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="Scanner" class="equip-img"/>
+          <div class="equip-body">
+            <span class="equip-tag">Tomodensitométrie</span>
+            <h5 data-i18n="eq2.name">Scanner 128 Barrettes</h5>
+            <p data-i18n="eq2.desc">Tomodensitomètre multicoupes dernière génération pour des reconstructions 3D et des explorations vasculaires.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 fade-in" data-delay="3">
+        <div class="equip-card">
+          <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?w=600&q=80" alt="Hémodialyse" class="equip-img"/>
+          <div class="equip-body">
+            <span class="equip-tag">Hémodialyse</span>
+            <h5 data-i18n="eq3.name">Générateurs Fresenius 5008</h5>
+            <p data-i18n="eq3.desc">30 générateurs d'hémodialyse Fresenius 5008 avec monitoring en temps réel pour une dialyse sûre et efficace.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DIALYSIS ===== -->
+<section id="dialysis" class="section-pad">
+  <div class="container dialysis-inner">
+    <div class="text-center mb-5 fade-in">
+      <span class="section-tag" style="color:#f5a0a8;" data-i18n="dial.tag">Centre d'hémodialyse</span>
+      <h2 class="section-title" style="color:#fff;" data-i18n="dial.title">Unité d'hémodialyse spécialisée</h2>
+      <div class="divider divider-center"></div>
+      <p class="section-sub mx-auto" style="color:rgba(255,255,255,0.7);" data-i18n="dial.sub">Notre unité d'hémodialyse est l'une des plus modernes de la région, équipée pour assurer la sécurité et le confort de chaque patient dialysé.</p>
+    </div>
+    <div class="row g-4 mb-5">
+      <div class="col-md-4 fade-in" data-delay="1">
+        <div class="dial-card">
+          <div class="dial-icon"><i class="fas fa-hospital-alt"></i></div>
+          <h4 data-i18n="dial1.title">Centre d'hémodialyse</h4>
+          <p data-i18n="dial1.desc">Notre centre est doté d'un environnement stérile et sécurisé, conçu spécifiquement pour le confort et la sécurité des patients en insuffisance rénale chronique.</p>
+          <ul>
+            <li><i class="fas fa-circle"></i> <span data-i18n="dial1.l1">30 générateurs modernes Fresenius</span></li>
+            <li><i class="fas fa-circle"></i> <span data-i18n="dial1.l2">Environnement stérile certifié</span></li>
+            <li><i class="fas fa-circle"></i> <span data-i18n="dial1.l3">Fauteuils ergonomiques confortables</span></li>
+            <li><i class="fas fa-circle"></i> <span data-i18n="dial1.l4">Traitement de l'eau ultra-pure</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in" data-delay="2">
+        <div class="dial-card">
+          <div class="dial-icon"><i class="fas fa-monitor-heart"></i></div>
+          <h4 data-i18n="dial2.title">Suivi & monitoring patient</h4>
+          <p data-i18n="dial2.desc">Chaque patient bénéficie d'un suivi continu et personnalisé par notre équipe néphrologiste expérimentée, avec des plans de traitement individualisés.</p>
+          <ul>
+            <li><i class="fas fa-circle"></i> <span data-i18n="dial2.l1">Monitoring cardiovasculaire continu</span></li>
+            <li><i class="fas fa-circle"></i> <span data-i18n="dial2.l2">Plans de traitement personnalisés</span></li>
+            <li><i class="fas fa-circle"></i> <span data-i18n="dial2.l3">Équipe de néphrologues dédiée</span></li>
+            <li><i class="fas fa-circle"></i> <span data-i18n="dial2.l4">Suivi biologique régulier</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in" data-delay="3">
+        <div class="dial-card">
+          <div class="dial-icon"><i class="fas fa-calendar-alt"></i></div>
+          <h4 data-i18n="dial3.title">Planning & support</h4>
+          <p data-i18n="dial3.desc">Organisation flexible des séances de dialyse adaptée aux contraintes de chaque patient, avec une disponibilité pour les urgences dialytiques.</p>
+          <ul>
+            <li><i class="fas fa-circle"></i> <span data-i18n="dial3.l1">Planification flexible des séances</span></li>
+            <li><i class="fas fa-circle"></i> <span data-i18n="dial3.l2">Dialyse d'urgence disponible</span></li>
+            <li><i class="fas fa-circle"></i> <span data-i18n="dial3.l3">Éducation thérapeutique patient</span></li>
+            <li><i class="fas fa-circle"></i> <span data-i18n="dial3.l4">Support psychologique et social</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-3 text-center fade-in" data-delay="1">
+        <div class="dial-num">30</div>
+        <div class="dial-lbl" data-i18n="dialstat1">Générateurs</div>
+      </div>
+      <div class="col-6 col-md-3 text-center fade-in" data-delay="2">
+        <div class="dial-num">200+</div>
+        <div class="dial-lbl" data-i18n="dialstat2">Patients dialysés</div>
+      </div>
+      <div class="col-6 col-md-3 text-center fade-in" data-delay="3">
+        <div class="dial-num">3x</div>
+        <div class="dial-lbl" data-i18n="dialstat3">Séances / semaine</div>
+      </div>
+      <div class="col-6 col-md-3 text-center fade-in" data-delay="4">
+        <div class="dial-num">24h</div>
+        <div class="dial-lbl" data-i18n="dialstat4">Dialyse urgence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY CHOOSE US ===== -->
+<section id="why" class="section-pad">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 fade-left">
+        <span class="section-tag" data-i18n="why.tag">Pourquoi nous choisir</span>
+        <h2 class="section-title" data-i18n="why.title">L'excellence médicale à votre service</h2>
+        <div class="divider"></div>
+        <p style="color:var(--text-light);line-height:1.8;font-size:0.95rem;" data-i18n="why.desc">Nous nous engageons à vous offrir une expérience médicale de premier plan, alliant expertise clinique, technologie de pointe et humanité dans les soins.</p>
+        <button class="btn-appt mt-4" data-bs-toggle="modal" data-bs-target="#apptModal" style="font-size:0.95rem;padding:12px 28px;" data-i18n="why.cta">Prendre rendez-vous <i class="fas fa-arrow-right ms-2"></i></button>
+      </div>
+      <div class="col-lg-7 fade-right">
+        <div class="row g-3">
+          <div class="col-12 col-sm-6">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-microscope"></i></div>
+              <div class="why-txt">
+                <h5 data-i18n="why1.title">Technologie avancée</h5>
+                <p data-i18n="why1.desc">IRM 3T, Scanner 128 barrettes, équipements de radiologie de dernière génération.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-user-md"></i></div>
+              <div class="why-txt">
+                <h5 data-i18n="why2.title">Médecins expérimentés</h5>
+                <p data-i18n="why2.desc">Équipe de spécialistes qualifiés avec des années d'expérience clinique.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-bolt"></i></div>
+              <div class="why-txt">
+                <h5 data-i18n="why3.title">Diagnostic rapide et précis</h5>
+                <p data-i18n="why3.desc">Résultats d'analyses et d'imagerie rapides pour un diagnostic efficace.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-heart"></i></div>
+              <div class="why-txt">
+                <h5 data-i18n="why4.title">Soins centrés patient</h5>
+                <p data-i18n="why4.desc">Approche humaniste et personnalisée pour chaque patient et sa famille.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+              <div class="why-txt">
+                <h5 data-i18n="why5.title">Environnement sûr et propre</h5>
+                <p data-i18n="why5.desc">Normes d'hygiène et de stérilisation strictes pour votre sécurité.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="why-card">
+              <div class="why-icon"><i class="fas fa-clock"></i></div>
+              <div class="why-txt">
+                <h5 data-i18n="why6.title">Disponibilité 24h/7j</h5>
+                <p data-i18n="why6.desc">Service d'urgence et hémodialyse d'urgence disponibles en continu.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CERTIFICATIONS ===== -->
+<section id="certs" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5 fade-in">
+      <span class="section-tag" data-i18n="cert.tag">Certifications</span>
+      <h2 class="section-title" data-i18n="cert.title">Accréditations & certifications</h2>
+      <div class="divider divider-center"></div>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-4 col-lg-2 fade-in" data-delay="1">
+        <div class="cert-card">
+          <div class="cert-icon">🏥</div>
+          <h6 data-i18n="cert1">Ministère de la Santé</h6>
+          <p data-i18n="cert1.d">Agréé et autorisé</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 fade-in" data-delay="2">
+        <div class="cert-card">
+          <div class="cert-icon">🛡️</div>
+          <h6 data-i18n="cert2">ISO 9001:2015</h6>
+          <p data-i18n="cert2.d">Qualité certifiée</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 fade-in" data-delay="3">
+        <div class="cert-card">
+          <div class="cert-icon">⚕️</div>
+          <h6 data-i18n="cert3">Ordre des Médecins</h6>
+          <p data-i18n="cert3.d">Médecins accrédités</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 fade-in" data-delay="4">
+        <div class="cert-card">
+          <div class="cert-icon">🔬</div>
+          <h6 data-i18n="cert4">Labo Certifié</h6>
+          <p data-i18n="cert4.d">Normes biologiques</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 fade-in" data-delay="5">
+        <div class="cert-card">
+          <div class="cert-icon">💉</div>
+          <h6 data-i18n="cert5">Dialyse CNAS</h6>
+          <p data-i18n="cert5.d">Conventionné CNAS</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 fade-in" data-delay="6">
+        <div class="cert-card">
+          <div class="cert-icon">🌟</div>
+          <h6 data-i18n="cert6">Excellence Award</h6>
+          <p data-i18n="cert6.d">Qualité de soins</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery">
+  <div class="container">
+    <div class="text-center mb-4 fade-in">
+      <span class="section-tag" data-i18n="gal.tag">Galerie</span>
+      <h2 class="section-title" data-i18n="gal.title">Notre centre en images</h2>
+      <div class="divider divider-center"></div>
+    </div>
+    <div class="gallery-slider fade-in">
+      <div class="gallery-track" id="galleryTrack">
+        <div class="gallery-slide"></div>
+        <div class="gallery-slide"></div>
+        <div class="gallery-slide"></div>
+        <div class="gallery-slide"></div>
+      </div>
+      <button class="gallery-btn prev" onclick="galPrev()"><i class="fas fa-chevron-left"></i></button>
+      <button class="gallery-btn next" onclick="galNext()"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="section-pad">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-5 fade-in">
+          <span class="section-tag" data-i18n="faq.tag">FAQ</span>
+          <h2 class="section-title" data-i18n="faq.title">Questions fréquentes</h2>
+          <div class="divider divider-center"></div>
+        </div>
+        <div id="faqList">
+          <div class="faq-item fade-in" data-delay="1">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span data-i18n="faq1.q">Comment prendre rendez-vous ?</span>
+              <i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner" data-i18n="faq1.a">Vous pouvez prendre rendez-vous en ligne via le formulaire sur notre site, en appelant nos numéros de téléphone, ou directement via WhatsApp. Nos équipes vous répondront dans les plus brefs délais pour confirmer votre rendez-vous.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in" data-delay="2">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span data-i18n="faq2.q">Quels services sont disponibles ?</span>
+              <i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner" data-i18n="faq2.a">Nous proposons l'IRM, le Scanner, la Radiologie, la Radiologie interventionnelle, le Laboratoire d'analyses médicales, les Consultations médicales spécialisées et l'Hémodialyse. Toutes ces prestations sont réalisées par des spécialistes qualifiés.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in" data-delay="3">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span data-i18n="faq3.q">Comment fonctionne l'hémodialyse ?</span>
+              <i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner" data-i18n="faq3.a">L'hémodialyse est un traitement qui filtre le sang des patients souffrant d'insuffisance rénale chronique. Le sang circule à travers un rein artificiel (dialyseur) pour éliminer les déchets et l'excès d'eau. Les séances durent généralement 4 heures, 3 fois par semaine.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in" data-delay="4">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span data-i18n="faq4.q">Quels sont les horaires d'ouverture ?</span>
+              <i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner" data-i18n="faq4.a">Le centre est ouvert du dimanche au jeudi de 8h00 à 20h00. Le samedi de 8h00 à 14h00. Le service d'hémodialyse fonctionne en rotation continue. Pour les urgences dialytiques, nous sommes disponibles 24h/24.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in" data-delay="5">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span data-i18n="faq5.q">Le centre est-il conventionné CNAS/CASNOS ?</span>
+              <i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner" data-i18n="faq5.a">Oui, notre centre d'hémodialyse est conventionné avec la CNAS et la CASNOS. Les patients pris en charge bénéficient du remboursement de leurs séances de dialyse. Pour les autres services, veuillez vous renseigner auprès de notre administration.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5 fade-in">
+      <span class="section-tag" data-i18n="contact.tag">Contact</span>
+      <h2 class="section-title" data-i18n="contact.title">Contactez-nous</h2>
+      <div class="divider divider-center"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 fade-left">
+        <div class="contact-info-card">
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+            <div>
+              <h6 data-i18n="c.phone">Téléphone</h6>
+              <a href="tel:+213000000000">+213 (0) 00 00 00 00</a><br/>
+              <a href="tel:+213000000000">+213 (0) 00 00 00 01</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <h6>WhatsApp</h6>
+              <a href="https://wa.me/213000000000" target="_blank">+213 (0) 00 00 00 00</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <h6>Email</h6>
+              <a href="mailto:contact@soprec-cms.dz">contact@soprec-cms.dz</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <h6 data-i18n="c.addr">Adresse</h6>
+              <p data-i18n="c.addr.val">Rue des Frères Bouadou, Bir Mourad Raïs, Alger, Algérie</p>
+            </div>
+          </div>
+          <div>
+            <h6 class="mb-3" data-i18n="c.hours">Horaires d'ouverture</h6>
+            <table class="hours-table">
+              <tr><td data-i18n="h.sun">Dim – Jeu</td><td>08:00 – 20:00</td></tr>
+              <tr><td data-i18n="h.sat">Samedi</td><td>08:00 – 14:00</td></tr>
+              <tr><td data-i18n="h.fri">Vendredi</td><td><span data-i18n="h.closed">Fermé</span></td></tr>
+              <tr><td data-i18n="h.dial">Hémodialyse</td><td>24h/24</td></tr>
+            </table>
+          </div>
+          <div class="social-btns">
+            <a href="#" class="soc-btn soc-fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="soc-btn soc-ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="soc-btn soc-tt" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/213000000000" class="soc-btn" style="background:linear-gradient(135deg,#25d366,#128c7e);" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 fade-right">
+        <div class="map-wrap mb-4">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.5!2d3.0412!3d36.7373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDQ0JzE0LjMiTiAzwrAwMic0OC4zIkU!5e0!3m2!1sfr!2sdz!4v1680000000000" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="contact-info-card">
+          <h5 class="mb-4" style="font-family:var(--font-display);font-weight:700;" data-i18n="cta.wa">Contacter sur WhatsApp</h5>
+          <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:20px;" data-i18n="cta.wa.desc">Pour une réponse rapide, contactez-nous directement via WhatsApp. Notre équipe est disponible pour répondre à vos questions.</p>
+          <a href="https://wa.me/213000000000" target="_blank" class="btn-wa-nav d-inline-flex" style="font-size:1rem;padding:13px 28px;border-radius:50px;"><i class="fab fa-whatsapp"></i> <span data-i18n="cta.wa.btn">Écrire sur WhatsApp</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-logo mb-3"><img src="https://res.cloudinary.com/dbh0mkfhe/image/upload/v1777891011/FB_IMG_1777882082499_bhwlk2.jpg" alt="CMS Logo" id="footerLogo"/></div>
+        <p class="footer-tagline" data-i18n="foot.tagline">Centre Médical Soprec CMS — Un centre médical moderne au service de votre santé, avec des équipements de pointe et une équipe médicale dédiée.</p>
+        <div class="footer-soc mt-4">
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://wa.me/213000000000" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <h6 data-i18n="foot.links">Liens rapides</h6>
+        <ul>
+          <li><a href="#hero" data-i18n="nav.home">Accueil</a></li>
+          <li><a href="#about" data-i18n="nav.about">À propos</a></li>
+          <li><a href="#services" data-i18n="nav.services">Services</a></li>
+          <li><a href="#doctors" data-i18n="nav.doctors">Médecins</a></li>
+          <li><a href="#dialysis" data-i18n="nav.dialysis">Hémodialyse</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6 col-6">
+        <h6 data-i18n="foot.services">Nos services</h6>
+        <ul>
+          <li><a href="#services">IRM</a></li>
+          <li><a href="#services">Scanner</a></li>
+          <li><a href="#services" data-i18n="nav_radio">Radiologie</a></li>
+          <li><a href="#services" data-i18n="nav_labo">Laboratoire</a></li>
+          <li><a href="#dialysis" data-i18n="nav.dialysis">Hémodialyse</a></li>
+          <li><a href="#services" data-i18n="nav_consult">Consultations</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h6 data-i18n="foot.contact">Contact</h6>
+        <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><a href="tel:+213000000000" style="color:rgba(255,255,255,0.7);">+213 (0) 00 00 00 00</a></div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i><a href="mailto:contact@soprec-cms.dz" style="color:rgba(255,255,255,0.7);">contact@soprec-cms.dz</a></div>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span data-i18n="foot.addr">Alger, Algérie</span></div>
+        <div class="footer-contact-item"><i class="fas fa-clock"></i><span data-i18n="foot.hours">Dim–Jeu: 08h–20h</span></div>
+      </div>
+    </div>
+    <hr class="footer-divider"/>
+    <div class="footer-bottom">
+      <p class="footer-copy" data-i18n="foot.copy">© 2025 Centre Médical Soprec CMS. Tous droits réservés.</p>
+      <div class="theme-toggle-wrap">
+        <i class="fas fa-sun theme-icon" id="sunIcon"></i>
+        <label class="theme-toggle">
+          <input type="checkbox" id="themeToggle" onchange="toggleTheme()"/>
+          <span class="theme-slider"></span>
+        </label>
+        <i class="fas fa-moon theme-icon" id="moonIcon"></i>
+      </div>
+      <div class="footer-soc">
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/213000000000" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== FLOATING WHATSAPP ===== -->
+<a href="https://wa.me/213000000000" target="_blank" class="floating-wa" title="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ===== APPOINTMENT MODAL ===== -->
+<div class="modal fade" id="apptModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="far fa-calendar-alt me-2 text-primary"></i> <span data-i18n="modal.title">Prendre rendez-vous</span></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label" data-i18n="form.name">Nom complet *</label>
+            <input type="text" class="form-control" placeholder="Votre nom complet"/>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" data-i18n="form.phone">Téléphone *</label>
+            <input type="tel" class="form-control" placeholder="+213 ..."/>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" data-i18n="form.service">Service souhaité *</label>
+            <select class="form-select">
+              <option value="" data-i18n="form.select">-- Choisir un service --</option>
+              <option>IRM</option>
+              <option>Scanner</option>
+              <option>Radiologie</option>
+              <option>Laboratoire</option>
+              <option>Hémodialyse</option>
+              <option data-i18n="form.consult">Consultation médicale</option>
+              <option>Échographie</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" data-i18n="form.date">Date souhaitée *</label>
+            <input type="date" class="form-control"/>
+          </div>
+          <div class="col-12">
+            <label class="form-label" data-i18n="form.msg">Message (optionnel)</label>
+            <textarea class="form-control" rows="3" placeholder="Décrivez votre demande..."></textarea>
+          </div>
+          <div class="col-12">
+            <button class="btn-submit" onclick="submitAppt()" data-i18n="form.submit">Confirmer le rendez-vous</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ===== TRANSLATIONS ===== */
+const translations = {
+  fr: {
+    "nav.home":"Accueil","nav.about":"À propos","nav.services":"Services","nav.doctors":"Médecins","nav.dialysis":"Hémodialyse","nav.contact":"Contact","nav.appt":"Rendez-vous",
+    "hero.badge":"Excellence Médicale Certifiée","hero.title.span":"Soprec CMS","hero.sub":"Un centre médical moderne au service de votre santé, équipé des dernières technologies médicales pour vous offrir les meilleurs soins.","hero.cta1":"Prendre rendez-vous","hero.cta2":"Contacter sur WhatsApp",
+    "hero.stat1":"Patients traités","hero.stat2":"Générateurs dialyse","hero.stat3":"Médecins spécialistes","hero.stat4":"Disponibilité",
+    "about.tag":"À propos de nous","about.title":"Votre santé, notre priorité absolue","about.badge":"Années d'expérience","about.desc":"Le Centre Médical Soprec CMS est un établissement de santé de référence, dédié à offrir des soins médicaux de haute qualité. Grâce à une équipe de spécialistes expérimentés et à des équipements médicaux de pointe, nous garantissons un diagnostic précis et un traitement personnalisé pour chaque patient.",
+    "about.f1.title":"Technologie médicale avancée","about.f1.desc":"Équipements IRM, Scanner et radiologie de dernière génération pour des diagnostics précis.",
+    "about.f2.title":"Équipe médicale expérimentée","about.f2.desc":"Médecins spécialistes et personnel soignant qualifié, dévoués à votre bien-être.",
+    "about.f3.title":"Soins centrés sur le patient","about.f3.desc":"Une approche humaine et personnalisée pour chaque patient, dans un environnement sûr et confortable.",
+    "stats.s1":"Patients traités","stats.s2":"Médecins spécialistes","stats.s3":"Années d'expérience","stats.s4":"Générateurs hémodialyse",
+    "services.tag":"Nos services","services.title":"Services médicaux complets","services.sub":"Nous offrons une gamme complète de services médicaux diagnostiques et thérapeutiques pour répondre à tous vos besoins de santé.",
+    "srv.irm":"IRM","srv.irm.desc":"Imagerie par résonance magnétique haute résolution pour des diagnostics précis des tissus mous, cerveau, et articulations.",
+    "srv.scanner":"Scanner (TDM)","srv.scanner.desc":"Tomodensitométrie multicoupes pour l'exploration du thorax, abdomen, pelvis et des structures vasculaires.",
+    "srv.radio":"Radiologie","srv.radio.desc":"Radiographies numériques et mammographie pour le dépistage et le suivi de nombreuses pathologies.",
+    "srv.interv":"Radiologie interventionnelle","srv.interv.desc":"Procédures mini-invasives guidées par imagerie pour le traitement de diverses conditions médicales.",
+    "srv.labo":"Laboratoire d'analyses","srv.labo.desc":"Analyses biologiques complètes — biochimie, hématologie, microbiologie — avec résultats rapides et fiables.",
+    "srv.consult":"Consultations médicales","srv.consult.desc":"Consultations spécialisées en cardiologie, néphrologie, médecine interne et autres disciplines.",
+    "srv.hemo":"Hémodialyse","srv.hemo.desc":"Centre d'hémodialyse doté de 30 générateurs modernes pour la prise en charge des insuffisants rénaux chroniques.",
+    "srv.cardio":"Échocardiographie","srv.cardio.desc":"Exploration cardiaque par ultrasons pour évaluer la fonction cardiaque.",
+    "srv.echo":"Échographie","srv.echo.desc":"Échographies abdominales, obstétriques et des parties molles avec technologie ultrasonore de précision.",
+    "docs.tag":"Notre équipe","docs.title":"Nos médecins spécialistes","docs.sub":"Une équipe de médecins hautement qualifiés et expérimentés, dédiés à vous offrir les meilleurs soins médicaux.",
+    "doc1.spec":"Néphrologue","doc1.desc":"Spécialiste en néphrologie et hémodialyse, 12 ans d'expérience clinique.",
+    "doc2.spec":"Radiologue","doc2.desc":"Experte en radiologie interventionnelle et imagerie médicale avancée.",
+    "doc3.spec":"Cardiologue","doc3.desc":"Spécialiste des maladies cardiovasculaires, échocardiographie et suivi cardiaque.",
+    "doc4.spec":"Médecine interne","doc4.desc":"Médecine interne et maladies chroniques, approche globale et préventive.",
+    "equip.tag":"Équipements","equip.title":"Technologie médicale de pointe","equip.sub":"Nos équipements de dernière génération garantissent des diagnostics précis et des soins de qualité supérieure.",
+    "eq1.name":"IRM 3 Tesla","eq1.desc":"Machine IRM haute résolution 3 Tesla pour une imagerie cérébrale, médullaire et musculo-squelettique de précision inégalée.",
+    "eq2.name":"Scanner 128 Barrettes","eq2.desc":"Tomodensitomètre multicoupes dernière génération pour des reconstructions 3D et des explorations vasculaires.",
+    "eq3.name":"Générateurs Fresenius 5008","eq3.desc":"30 générateurs d'hémodialyse Fresenius 5008 avec monitoring en temps réel pour une dialyse sûre et efficace.",
+    "dial.tag":"Centre d'hémodialyse","dial.title":"Unité d'hémodialyse spécialisée","dial.sub":"Notre unité d'hémodialyse est l'une des plus modernes de la région, équipée pour assurer la sécurité et le confort de chaque patient dialysé.",
+    "dial1.title":"Centre d'hémodialyse","dial1.desc":"Notre centre est doté d'un environnement stérile et sécurisé pour les patients en insuffisance rénale chronique.","dial1.l1":"30 générateurs modernes Fresenius","dial1.l2":"Environnement stérile certifié","dial1.l3":"Fauteuils ergonomiques confortables","dial1.l4":"Traitement de l'eau ultra-pure",
+    "dial2.title":"Suivi & monitoring patient","dial2.desc":"Chaque patient bénéficie d'un suivi continu et personnalisé par notre équipe néphrologiste.","dial2.l1":"Monitoring cardiovasculaire continu","dial2.l2":"Plans de traitement personnalisés","dial2.l3":"Équipe de néphrologues dédiée","dial2.l4":"Suivi biologique régulier",
+    "dial3.title":"Planning & support","dial3.desc":"Organisation flexible des séances de dialyse adaptée aux contraintes de chaque patient.","dial3.l1":"Planification flexible des séances","dial3.l2":"Dialyse d'urgence disponible","dial3.l3":"Éducation thérapeutique patient","dial3.l4":"Support psychologique et social",
+    "dialstat1":"Générateurs","dialstat2":"Patients dialysés","dialstat3":"Séances / semaine","dialstat4":"Dialyse urgence",
+    "why.tag":"Pourquoi nous choisir","why.title":"L'excellence médicale à votre service","why.desc":"Nous nous engageons à vous offrir une expérience médicale de premier plan.","why.cta":"Prendre rendez-vous",
+    "why1.title":"Technologie avancée","why1.desc":"IRM 3T, Scanner 128 barrettes, équipements de radiologie de dernière génération.",
+    "why2.title":"Médecins expérimentés","why2.desc":"Équipe de spécialistes qualifiés avec des années d'expérience clinique.",
+    "why3.title":"Diagnostic rapide et précis","why3.desc":"Résultats d'analyses et d'imagerie rapides pour un diagnostic efficace.",
+    "why4.title":"Soins centrés patient","why4.desc":"Approche humaniste et personnalisée pour chaque patient et sa famille.",
+    "why5.title":"Environnement sûr et propre","why5.desc":"Normes d'hygiène et de stérilisation strictes pour votre sécurité.",
+    "why6.title":"Disponibilité 24h/7j","why6.desc":"Service d'urgence et hémodialyse d'urgence disponibles en continu.",
+    "cert.tag":"Certifications","cert.title":"Accréditations & certifications",
+    "cert1":"Ministère de la Santé","cert1.d":"Agréé et autorisé","cert2":"ISO 9001:2015","cert2.d":"Qualité certifiée","cert3":"Ordre des Médecins","cert3.d":"Médecins accrédités","cert4":"Labo Certifié","cert4.d":"Normes biologiques","cert5":"Dialyse CNAS","cert5.d":"Conventionné CNAS","cert6":"Excellence Award","cert6.d":"Qualité de soins",
+    "gal.tag":"Galerie","gal.title":"Notre centre en images",
+    "faq.tag":"FAQ","faq.title":"Questions fréquentes",
+    "faq1.q":"Comment prendre rendez-vous ?","faq1.a":"Vous pouvez prendre rendez-vous en ligne via le formulaire sur notre site, en appelant nos numéros de téléphone, ou directement via WhatsApp.",
+    "faq2.q":"Quels services sont disponibles ?","faq2.a":"Nous proposons l'IRM, le Scanner, la Radiologie, le Laboratoire d'analyses médicales, les Consultations médicales spécialisées et l'Hémodialyse.",
+    "faq3.q":"Comment fonctionne l'hémodialyse ?","faq3.a":"L'hémodialyse est un traitement qui filtre le sang des patients souffrant d'insuffisance rénale chronique. Les séances durent généralement 4 heures, 3 fois par semaine.",
+    "faq4.q":"Quels sont les horaires d'ouverture ?","faq4.a":"Le centre est ouvert du dimanche au jeudi de 8h00 à 20h00. Le samedi de 8h00 à 14h00. Le service d'hémodialyse fonctionne en rotation continue.",
+    "faq5.q":"Le centre est-il conventionné CNAS/CASNOS ?","faq5.a":"Oui, notre centre d'hémodialyse est conventionné avec la CNAS et la CASNOS. Les patients bénéficient du remboursement de leurs séances de dialyse.",
+    "contact.tag":"Contact","contact.title":"Contactez-nous",
+    "c.phone":"Téléphone","c.addr":"Adresse","c.addr.val":"Rue des Frères Bouadou, Bir Mourad Raïs, Alger, Algérie","c.hours":"Horaires d'ouverture",
+    "h.sun":"Dim – Jeu","h.sat":"Samedi","h.fri":"Vendredi","h.closed":"Fermé","h.dial":"Hémodialyse",
+    "cta.wa":"Contacter sur WhatsApp","cta.wa.desc":"Pour une réponse rapide, contactez-nous directement via WhatsApp.","cta.wa.btn":"Écrire sur WhatsApp",
+    "foot.tagline":"Centre Médical Soprec CMS — Un centre médical moderne au service de votre santé.","foot.links":"Liens rapides","foot.services":"Nos services","foot.contact":"Contact","foot.addr":"Alger, Algérie","foot.hours":"Dim–Jeu: 08h–20h","foot.copy":"© 2025 Centre Médical Soprec CMS. Tous droits réservés.",
+    "modal.title":"Prendre rendez-vous","form.name":"Nom complet *","form.phone":"Téléphone *","form.service":"Service souhaité *","form.select":"-- Choisir un service --","form.date":"Date souhaitée *","form.msg":"Message (optionnel)","form.submit":"Confirmer le rendez-vous"
+  },
+  en: {
+    "nav.home":"Home","nav.about":"About","nav.services":"Services","nav.doctors":"Doctors","nav.dialysis":"Hemodialysis","nav.contact":"Contact","nav.appt":"Appointment",
+    "hero.badge":"Certified Medical Excellence","hero.title.span":"Soprec CMS","hero.sub":"A modern medical center dedicated to your health, equipped with the latest medical technologies to provide you with the best care.","hero.cta1":"Book Appointment","hero.cta2":"Contact on WhatsApp",
+    "hero.stat1":"Patients treated","hero.stat2":"Dialysis generators","hero.stat3":"Specialist doctors","hero.stat4":"Availability",
+    "about.tag":"About us","about.title":"Your health, our absolute priority","about.badge":"Years of experience","about.desc":"Centre Médical Soprec CMS is a leading healthcare facility dedicated to providing high-quality medical care. With a team of experienced specialists and state-of-the-art equipment, we ensure precise diagnosis and personalized treatment for each patient.",
+    "about.f1.title":"Advanced medical technology","about.f1.desc":"Latest generation MRI, Scanner and radiology equipment for precise diagnoses.",
+    "about.f2.title":"Experienced medical team","about.f2.desc":"Specialist doctors and qualified nursing staff, devoted to your well-being.",
+    "about.f3.title":"Patient-centered care","about.f3.desc":"A human and personalized approach for each patient, in a safe and comfortable environment.",
+    "stats.s1":"Patients treated","stats.s2":"Specialist doctors","stats.s3":"Years of experience","stats.s4":"Hemodialysis generators",
+    "services.tag":"Our services","services.title":"Complete medical services","services.sub":"We offer a complete range of diagnostic and therapeutic medical services to meet all your health needs.",
+    "srv.irm":"MRI","srv.irm.desc":"High-resolution magnetic resonance imaging for precise diagnosis of soft tissues, brain, and joints.",
+    "srv.scanner":"CT Scan","srv.scanner.desc":"Multidetector computed tomography for exploration of thorax, abdomen, pelvis and vascular structures.",
+    "srv.radio":"Radiology","srv.radio.desc":"Digital X-rays and mammography for screening and monitoring of many pathologies.",
+    "srv.interv":"Interventional Radiology","srv.interv.desc":"Image-guided minimally invasive procedures for treatment of various medical conditions.",
+    "srv.labo":"Medical Laboratory","srv.labo.desc":"Complete biological analyses — biochemistry, hematology, microbiology — with fast and reliable results.",
+    "srv.consult":"Medical Consultations","srv.consult.desc":"Specialized consultations in cardiology, nephrology, internal medicine and other disciplines.",
+    "srv.hemo":"Hemodialysis","srv.hemo.desc":"Hemodialysis center with 30 modern generators for managing chronic renal failure patients.",
+    "srv.cardio":"Echocardiography","srv.cardio.desc":"Cardiac exploration by ultrasound to assess cardiac function.",
+    "srv.echo":"Ultrasound","srv.echo.desc":"Abdominal, obstetric and soft tissue ultrasounds with precision ultrasound technology.",
+    "docs.tag":"Our team","docs.title":"Our specialist doctors","docs.sub":"A team of highly qualified and experienced doctors, dedicated to offering you the best medical care.",
+    "doc1.spec":"Nephrologist","doc1.desc":"Specialist in nephrology and hemodialysis, 12 years of clinical experience.",
+    "doc2.spec":"Radiologist","doc2.desc":"Expert in interventional radiology and advanced medical imaging.",
+    "doc3.spec":"Cardiologist","doc3.desc":"Specialist in cardiovascular diseases, echocardiography and cardiac monitoring.",
+    "doc4.spec":"Internal Medicine","doc4.desc":"Internal medicine and chronic diseases, global and preventive approach.",
+    "equip.tag":"Equipment","equip.title":"Cutting-edge medical technology","equip.sub":"Our latest generation equipment guarantees precise diagnoses and superior quality care.",
+    "eq1.name":"MRI 3 Tesla","eq1.desc":"High-resolution 3 Tesla MRI machine for unparalleled brain, spinal cord and musculoskeletal imaging.",
+    "eq2.name":"128-Slice CT Scanner","eq2.desc":"Latest generation multidetector CT scanner for 3D reconstructions and vascular explorations.",
+    "eq3.name":"Fresenius 5008 Generators","eq3.desc":"30 Fresenius 5008 hemodialysis generators with real-time monitoring for safe and effective dialysis.",
+    "dial.tag":"Hemodialysis Center","dial.title":"Specialized Hemodialysis Unit","dial.sub":"Our hemodialysis unit is one of the most modern in the region, equipped to ensure the safety and comfort of every dialysis patient.",
+    "dial1.title":"Hemodialysis Center","dial1.desc":"Our center has a sterile and secure environment for patients with chronic renal failure.","dial1.l1":"30 modern Fresenius generators","dial1.l2":"Certified sterile environment","dial1.l3":"Comfortable ergonomic chairs","dial1.l4":"Ultra-pure water treatment",
+    "dial2.title":"Patient care & monitoring","dial2.desc":"Each patient benefits from continuous and personalized monitoring by our nephrologist team.","dial2.l1":"Continuous cardiovascular monitoring","dial2.l2":"Personalized treatment plans","dial2.l3":"Dedicated nephrology team","dial2.l4":"Regular biological monitoring",
+    "dial3.title":"Scheduling & support","dial3.desc":"Flexible dialysis session organization adapted to each patient's constraints.","dial3.l1":"Flexible session scheduling","dial3.l2":"Emergency dialysis available","dial3.l3":"Patient therapeutic education","dial3.l4":"Psychological and social support",
+    "dialstat1":"Generators","dialstat2":"Dialysis patients","dialstat3":"Sessions / week","dialstat4":"Emergency dialysis",
+    "why.tag":"Why choose us","why.title":"Medical excellence at your service","why.desc":"We are committed to offering you a top-tier medical experience.","why.cta":"Book Appointment",
+    "why1.title":"Advanced technology","why1.desc":"3T MRI, 128-slice CT, latest generation radiology equipment.",
+    "why2.title":"Experienced doctors","why2.desc":"Team of qualified specialists with years of clinical experience.",
+    "why3.title":"Fast and accurate diagnosis","why3.desc":"Fast analysis and imaging results for efficient diagnosis.",
+    "why4.title":"Patient-centered care","why4.desc":"Humanistic and personalized approach for each patient and family.",
+    "why5.title":"Safe and clean environment","why5.desc":"Strict hygiene and sterilization standards for your safety.",
+    "why6.title":"24/7 availability","why6.desc":"Emergency service and emergency hemodialysis available continuously.",
+    "cert.tag":"Certifications","cert.title":"Accreditations & certifications",
+    "cert1":"Ministry of Health","cert1.d":"Licensed & approved","cert2":"ISO 9001:2015","cert2.d":"Certified quality","cert3":"Medical Association","cert3.d":"Accredited doctors","cert4":"Certified Lab","cert4.d":"Biological standards","cert5":"CNAS Dialysis","cert5.d":"CNAS approved","cert6":"Excellence Award","cert6.d":"Quality of care",
+    "gal.tag":"Gallery","gal.title":"Our center in images",
+    "faq.tag":"FAQ","faq.title":"Frequently asked questions",
+    "faq1.q":"How to book an appointment?","faq1.a":"You can book an appointment online via the form on our website, by calling our phone numbers, or directly via WhatsApp.",
+    "faq2.q":"What services are available?","faq2.a":"We offer MRI, CT Scan, Radiology, Medical Laboratory, Specialized Medical Consultations and Hemodialysis.",
+    "faq3.q":"How does hemodialysis work?","faq3.a":"Hemodialysis is a treatment that filters the blood of patients with chronic renal failure. Sessions usually last 4 hours, 3 times a week.",
+    "faq4.q":"What are the opening hours?","faq4.a":"The center is open Sunday to Thursday from 8:00am to 8:00pm. Saturday from 8:00am to 2:00pm. The hemodialysis service runs in continuous rotation.",
+    "faq5.q":"Is the center covered by CNAS/CASNOS?","faq5.a":"Yes, our hemodialysis center is approved by CNAS and CASNOS. Patients benefit from reimbursement of their dialysis sessions.",
+    "contact.tag":"Contact","contact.title":"Contact us",
+    "c.phone":"Phone","c.addr":"Address","c.addr.val":"Frères Bouadou Street, Bir Mourad Raïs, Algiers, Algeria","c.hours":"Opening hours",
+    "h.sun":"Sun – Thu","h.sat":"Saturday","h.fri":"Friday","h.closed":"Closed","h.dial":"Hemodialysis",
+    "cta.wa":"Contact on WhatsApp","cta.wa.desc":"For a quick response, contact us directly via WhatsApp.","cta.wa.btn":"Write on WhatsApp",
+    "foot.tagline":"Centre Médical Soprec CMS — A modern medical center dedicated to your health.","foot.links":"Quick links","foot.services":"Our services","foot.contact":"Contact","foot.addr":"Algiers, Algeria","foot.hours":"Sun–Thu: 8am–8pm","foot.copy":"© 2025 Centre Médical Soprec CMS. All rights reserved.",
+    "modal.title":"Book an appointment","form.name":"Full name *","form.phone":"Phone *","form.service":"Desired service *","form.select":"-- Choose a service --","form.date":"Preferred date *","form.msg":"Message (optional)","form.submit":"Confirm appointment"
+  },
+  ar: {
+    "nav.home":"الرئيسية","nav.about":"من نحن","nav.services":"الخدمات","nav.doctors":"الأطباء","nav.dialysis":"غسيل الكلى","nav.contact":"اتصل بنا","nav.appt":"حجز موعد",
+    "hero.badge":"تميّز طبي معتمد","hero.title.span":"سوبريك CMS","hero.sub":"مركز طبي حديث في خدمة صحتكم، مجهّز بأحدث التقنيات الطبية لتقديم أفضل الرعاية الصحية لكم.","hero.cta1":"احجز موعدًا","hero.cta2":"تواصل عبر واتساب",
+    "hero.stat1":"مريض تم علاجه","hero.stat2":"أجهزة غسيل كلى","hero.stat3":"طبيب متخصص","hero.stat4":"التوافر",
+    "about.tag":"من نحن","about.title":"صحتكم، أولويتنا القصوى","about.badge":"سنوات من الخبرة","about.desc":"المركز الطبي سوبريك CMS مؤسسة صحية مرجعية مكرّسة لتقديم رعاية طبية عالية الجودة. بفضل فريق من المختصين ذوي الخبرة والمعدات الطبية المتطورة، نضمن تشخيصًا دقيقًا وعلاجًا شخصيًا لكل مريض.",
+    "about.f1.title":"تكنولوجيا طبية متقدمة","about.f1.desc":"أجهزة الرنين المغناطيسي والتصوير المقطعي والأشعة من الجيل الأحدث.",
+    "about.f2.title":"فريق طبي متمرّس","about.f2.desc":"أطباء متخصصون وطاقم تمريض مؤهل، مكرّسون لصحتكم.",
+    "about.f3.title":"رعاية متمحورة حول المريض","about.f3.desc":"نهج إنساني وشخصي لكل مريض في بيئة آمنة ومريحة.",
+    "stats.s1":"مريض تم علاجه","stats.s2":"طبيب متخصص","stats.s3":"سنوات من الخبرة","stats.s4":"أجهزة غسيل الكلى",
+    "services.tag":"خدماتنا","services.title":"خدمات طبية شاملة","services.sub":"نقدم مجموعة كاملة من الخدمات الطبية التشخيصية والعلاجية لتلبية جميع احتياجاتكم الصحية.",
+    "srv.irm":"الرنين المغناطيسي","srv.irm.desc":"تصوير بالرنين المغناطيسي عالي الدقة للتشخيص الدقيق للأنسجة الرخوة والدماغ والمفاصل.",
+    "srv.scanner":"الأشعة المقطعية","srv.scanner.desc":"التصوير المقطعي متعدد الطبقات لاستكشاف الصدر والبطن والحوض والأوعية الدموية.",
+    "srv.radio":"الأشعة السينية","srv.radio.desc":"الأشعة الرقمية والتصوير الشعاعي للكشف المبكر ومتابعة الأمراض.",
+    "srv.interv":"الأشعة التدخلية","srv.interv.desc":"إجراءات طفيفة التوغل موجّهة بالتصوير لعلاج حالات طبية متنوعة.",
+    "srv.labo":"مخبر التحاليل الطبية","srv.labo.desc":"تحاليل بيولوجية شاملة — كيمياء حيوية، أمراض دم، ميكروبيولوجيا — بنتائج سريعة وموثوقة.",
+    "srv.consult":"الاستشارات الطبية","srv.consult.desc":"استشارات متخصصة في أمراض القلب والكلى والطب الباطني وتخصصات أخرى.",
+    "srv.hemo":"غسيل الكلى","srv.hemo.desc":"مركز غسيل كلى مجهّز بـ 30 جهازًا حديثًا لرعاية مرضى الفشل الكلوي المزمن.",
+    "srv.cardio":"تخطيط صدى القلب","srv.cardio.desc":"فحص القلب بالموجات فوق الصوتية لتقييم وظائف القلب.",
+    "srv.echo":"الإيكوغرافيا","srv.echo.desc":"إيكوغرافيا البطن والتوليد والأنسجة الرخوة بتقنية موجات فوق صوتية دقيقة.",
+    "docs.tag":"فريقنا","docs.title":"أطباؤنا المتخصصون","docs.sub":"فريق من الأطباء ذوي الكفاءة العالية والخبرة، مكرّسون لتقديم أفضل الرعاية الطبية لكم.",
+    "doc1.spec":"أخصائي أمراض الكلى","doc1.desc":"متخصص في أمراض الكلى وغسيل الكلى، خبرة سريرية 12 عامًا.",
+    "doc2.spec":"أخصائية أشعة","doc2.desc":"خبيرة في الأشعة التدخلية والتصوير الطبي المتقدم.",
+    "doc3.spec":"أخصائي أمراض القلب","doc3.desc":"متخصص في أمراض القلب والأوعية الدموية وتخطيط صدى القلب.",
+    "doc4.spec":"طب باطني","doc4.desc":"طب باطني وأمراض مزمنة، نهج شامل ووقائي.",
+    "equip.tag":"المعدات","equip.title":"تكنولوجيا طبية متطورة","equip.sub":"معداتنا من الجيل الأحدث تضمن تشخيصات دقيقة ورعاية عالية الجودة.",
+    "eq1.name":"رنين مغناطيسي 3 تيسلا","eq1.desc":"جهاز رنين مغناطيسي عالي الدقة 3 تيسلا لتصوير الدماغ والحبل الشوكي والجهاز العضلي الهيكلي.",
+    "eq2.name":"تصوير مقطعي 128 طبقة","eq2.desc":"مقياس تصوير مقطعي حديث لإعادة البناء ثلاثي الأبعاد واستكشاف الأوعية الدموية.",
+    "eq3.name":"أجهزة فريسينيوس 5008","eq3.desc":"30 جهاز غسيل كلى فريسينيوس 5008 مع مراقبة في الوقت الفعلي لغسيل كلى آمن وفعّال.",
+    "dial.tag":"مركز غسيل الكلى","dial.title":"وحدة غسيل الكلى المتخصصة","dial.sub":"وحدة غسيل الكلى لدينا من أحدث الوحدات في المنطقة، مجهّزة لضمان سلامة وراحة كل مريض.",
+    "dial1.title":"مركز غسيل الكلى","dial1.desc":"مركزنا مجهّز ببيئة معقّمة وآمنة لمرضى الفشل الكلوي المزمن.","dial1.l1":"30 جهاز فريسينيوس حديث","dial1.l2":"بيئة معقّمة معتمدة","dial1.l3":"كراسٍ مريحة هندسية","dial1.l4":"معالجة المياه فائقة النقاء",
+    "dial2.title":"متابعة المريض ومراقبته","dial2.desc":"يستفيد كل مريض من متابعة مستمرة وشخصية من فريق أطباء الكلى لدينا.","dial2.l1":"مراقبة قلبية وعائية مستمرة","dial2.l2":"خطط علاج شخصية","dial2.l3":"فريق أطباء كلى متخصص","dial2.l4":"متابعة بيولوجية منتظمة",
+    "dial3.title":"الجدولة والدعم","dial3.desc":"تنظيم مرن لجلسات غسيل الكلى يتكيّف مع احتياجات كل مريض.","dial3.l1":"جدولة مرنة للجلسات","dial3.l2":"غسيل كلى طارئ متاح","dial3.l3":"تثقيف المريض العلاجي","dial3.l4":"دعم نفسي واجتماعي",
+    "dialstat1":"الأجهزة","dialstat2":"مرضى غسيل الكلى","dialstat3":"جلسات / أسبوع","dialstat4":"غسيل كلى طارئ",
+    "why.tag":"لماذا تختارنا","why.title":"التميّز الطبي في خدمتكم","why.desc":"نلتزم بتقديم تجربة طبية من الدرجة الأولى لكم.","why.cta":"احجز موعدًا",
+    "why1.title":"تكنولوجيا متقدمة","why1.desc":"رنين مغناطيسي 3 تيسلا، تصوير مقطعي 128 طبقة، أجهزة أشعة متطورة.",
+    "why2.title":"أطباء متمرّسون","why2.desc":"فريق من المختصين المؤهلين بسنوات من الخبرة السريرية.",
+    "why3.title":"تشخيص سريع ودقيق","why3.desc":"نتائج التحاليل والتصوير الطبي السريعة لتشخيص فعّال.",
+    "why4.title":"رعاية متمحورة حول المريض","why4.desc":"نهج إنساني وشخصي لكل مريض وعائلته.",
+    "why5.title":"بيئة آمنة ونظيفة","why5.desc":"معايير صارمة للنظافة والتعقيم لضمان سلامتكم.",
+    "why6.title":"توافر 24 ساعة","why6.desc":"خدمات الطوارئ وغسيل الكلى الطارئ متاحة باستمرار.",
+    "cert.tag":"الاعتمادات","cert.title":"الاعتمادات والشهادات",
+    "cert1":"وزارة الصحة","cert1.d":"مرخّص ومعتمد","cert2":"آيزو 9001:2015","cert2.d":"جودة معتمدة","cert3":"هيئة الأطباء","cert3.d":"أطباء معتمدون","cert4":"مخبر معتمد","cert4.d":"معايير بيولوجية","cert5":"غسيل كلى CNAS","cert5.d":"معتمد من CNAS","cert6":"جائزة التميّز","cert6.d":"جودة الرعاية",
+    "gal.tag":"معرض الصور","gal.title":"مركزنا في صور",
+    "faq.tag":"الأسئلة الشائعة","faq.title":"أسئلة مكرّرة",
+    "faq1.q":"كيف أحجز موعدًا؟","faq1.a":"يمكنك حجز موعد عبر الإنترنت من خلال النموذج على موقعنا، أو بالاتصال بأرقام هواتفنا، أو مباشرة عبر واتساب.",
+    "faq2.q":"ما هي الخدمات المتاحة؟","faq2.a":"نقدم الرنين المغناطيسي، التصوير المقطعي، الأشعة السينية، مخبر التحاليل الطبية، الاستشارات الطبية المتخصصة وغسيل الكلى.",
+    "faq3.q":"كيف يعمل غسيل الكلى؟","faq3.a":"غسيل الكلى هو علاج يُرشّح فيه دم المرضى المصابين بالفشل الكلوي المزمن. تستغرق الجلسات عادةً 4 ساعات، 3 مرات في الأسبوع.",
+    "faq4.q":"ما هي ساعات العمل؟","faq4.a":"يعمل المركز من الأحد إلى الخميس من 8:00 صباحًا حتى 8:00 مساءً. السبت من 8:00 صباحًا حتى 2:00 ظهرًا. تعمل وحدة غسيل الكلى في دوران مستمر.",
+    "faq5.q":"هل المركز متعاقد مع CNAS/CASNOS؟","faq5.a":"نعم، مركز غسيل الكلى لدينا متعاقد مع CNAS وCASnos. يستفيد المرضى من تعويض جلسات غسيل الكلى الخاصة بهم.",
+    "contact.tag":"اتصل بنا","contact.title":"تواصل معنا",
+    "c.phone":"الهاتف","c.addr":"العنوان","c.addr.val":"شارع الإخوة بوعدو، بئر مراد رايس، الجزائر العاصمة، الجزائر","c.hours":"ساعات العمل",
+    "h.sun":"الأحد – الخميس","h.sat":"السبت","h.fri":"الجمعة","h.closed":"مغلق","h.dial":"غسيل الكلى",
+    "cta.wa":"التواصل عبر واتساب","cta.wa.desc":"للحصول على رد سريع، تواصل معنا مباشرة عبر واتساب.","cta.wa.btn":"الكتابة عبر واتساب",
+    "foot.tagline":"المركز الطبي سوبريك CMS — مركز طبي حديث في خدمة صحتكم.","foot.links":"روابط سريعة","foot.services":"خدماتنا","foot.contact":"اتصل بنا","foot.addr":"الجزائر العاصمة، الجزائر","foot.hours":"الأحد–الخميس: 8ص–8م","foot.copy":"© 2025 المركز الطبي سوبريك CMS. جميع الحقوق محفوظة.",
+    "modal.title":"حجز موعد","form.name":"الاسم الكامل *","form.phone":"الهاتف *","form.service":"الخدمة المطلوبة *","form.select":"-- اختر خدمة --","form.date":"التاريخ المفضل *","form.msg":"رسالة (اختياري)","form.submit":"تأكيد الموعد"
+  }
+};
+
+let currentLang = 'fr';
+
+function setLang(lang) {
+  currentLang = lang;
+  const html = document.documentElement;
+  const isRTL = lang === 'ar';
+  
+  // Set language and direction on html element
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+  
+  // Apply font to body
+  document.body.style.fontFamily = isRTL ? "'Cairo', sans-serif" : "'DM Sans', sans-serif";
+  
+  // Reset direction on body explicitly for LTR
+  document.body.style.direction = isRTL ? 'rtl' : 'ltr';
+  document.body.style.textAlign = isRTL ? 'right' : 'left';
+  
+  // Update label
+  const labels = {fr:'🇫🇷 FR', en:'🇬🇧 EN', ar:'🇩🇿 AR'};
+  document.getElementById('langLabel').textContent = labels[lang] || lang.toUpperCase();
+  
+  // Translate all elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang] && translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
+  });
+  
+  // Update active state on dropdown items
+  document.querySelectorAll('.lang-dropdown .dropdown-item').forEach(item => {
+    const onclick = item.getAttribute('onclick');
+    item.classList.toggle('active', onclick === `setLang('${lang}')`);
+  });
+  
+  return false;
+}
+
+/* ===== HERO SLIDER ===== */
+let heroIdx = 0;
+const heroSlides = document.querySelectorAll('.hero-slide');
+const heroDots = document.querySelectorAll('.slider-dot');
+function goSlide(n) {
+  heroSlides[heroIdx].classList.remove('active');
+  heroDots[heroIdx].classList.remove('active');
+  heroIdx = n;
+  heroSlides[heroIdx].classList.add('active');
+  heroDots[heroIdx].classList.add('active');
+}
+setInterval(() => goSlide((heroIdx + 1) % heroSlides.length), 5000);
+
+/* ===== GALLERY SLIDER ===== */
+let galIdx = 0;
+const galTrack = document.getElementById('galleryTrack');
+const galTotal = document.querySelectorAll('.gallery-slide').length;
+function galPrev() { galIdx = (galIdx - 1 + galTotal) % galTotal; galTrack.style.transform = `translateX(-${galIdx * 100}%)`; }
+function galNext() { galIdx = (galIdx + 1) % galTotal; galTrack.style.transform = `translateX(-${galIdx * 100}%)`; }
+setInterval(galNext, 4000);
+
+/* ===== NAVBAR SCROLL ===== */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+  // Active links
+  document.querySelectorAll('section[id]').forEach(sec => {
+    const top = sec.offsetTop - 100;
+    const bottom = top + sec.offsetHeight;
+    if (window.scrollY >= top && window.scrollY < bottom) {
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + sec.id);
+      });
+    }
+  });
+});
+
+/* ===== MOBILE MENU ===== */
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+/* ===== FAQ ===== */
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const answer = item.querySelector('.faq-answer');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.faq-answer').classList.remove('open');
+  });
+  if (!wasOpen) {
+    item.classList.add('open');
+    answer.classList.add('open');
+  }
+}
+
+/* ===== DARK MODE ===== */
+function toggleTheme() {
+  const isDark = document.getElementById('themeToggle').checked;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  document.getElementById('sunIcon').style.opacity = isDark ? '0.4' : '1';
+  document.getElementById('moonIcon').style.opacity = isDark ? '1' : '0.4';
+}
+// Load saved theme
+(function() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.getElementById('themeToggle').checked = true;
+    document.getElementById('sunIcon').style.opacity = '0.4';
+    document.getElementById('moonIcon').style.opacity = '1';
+  }
+})();
+
+/* ===== COUNTER ANIMATION ===== */
+let countersAnimated = false;
+function animateCounters() {
+  if (countersAnimated) return;
+  const statsSection = document.getElementById('stats');
+  const rect = statsSection.getBoundingClientRect();
+  if (rect.top < window.innerHeight - 100) {
+    countersAnimated = true;
+    document.querySelectorAll('.counter').forEach(el => {
+      const target = parseInt(el.getAttribute('data-target'));
+      const duration = 2000;
+      const start = Date.now();
+      const tick = () => {
+        const elapsed = Date.now() - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(ease * target).toLocaleString();
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toLocaleString();
+      };
+      tick();
+    });
+  }
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, {threshold: 0.12});
+document.querySelectorAll('.fade-in,.fade-left,.fade-right').forEach(el => observer.observe(el));
+window.addEventListener('scroll', animateCounters, {passive: true});
+animateCounters();
+
+/* ===== APPOINTMENT ===== */
+function submitAppt() {
+  const msgs = {fr:'Merci! Votre demande a été envoyée. Nous vous contacterons bientôt.',en:'Thank you! Your request has been sent. We will contact you soon.',ar:'شكرًا! تم إرسال طلبكم. سنتواصل معكم قريبًا.'};
+  alert(msgs[currentLang] || msgs.fr);
+  bootstrap.Modal.getInstance(document.getElementById('apptModal')).hide();
+}
+
+/* ===== SMOOTH CLOSE MOBILE ON OUTSIDE CLICK ===== */
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('mobileMenu');
+  const burger = document.getElementById('hamburger');
+  if (!menu.contains(e.target) && !burger.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>
